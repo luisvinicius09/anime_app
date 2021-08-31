@@ -1,11 +1,14 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { COLORS, icons } from '../constants';
+import { COLORS } from '../constants';
 import { Main } from '../screens';
 import Profile from '../screens/Profile';
-import Undefined from '../screens/Undefined';
-import Reports from '../screens/Reports';
+// import Reports from '../screens/Reports';
+
+// Icons
+import { FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,43 +27,37 @@ const Tabs = () => {
           switch (route.name) {
             case 'Main':
               return (
-                <Image
-                  source={icons.home}
-                  resizeMode="contain"
-                  style={{ tintColor: tintColor, width: 25, height: 25 }}
-                />
+                // <Image
+                //   source={icons.home}
+                //   resizeMode="contain"
+                //   style={{ tintColor: tintColor, width: 25, height: 25 }}
+                // />
+                <AntDesign name="home" size={25} color={tintColor} />
               );
-            case 'Reports':
-              return (
-                <Image
-                  source={icons.reports}
-                  resizeMode="contain"
-                  style={{ tintColor: tintColor, width: 25, height: 25 }}
-                />
-              );
-            case 'Undefined':
-              return (
-                <Image
-                  source={icons.creditCard}
-                  resizeMode="contain"
-                  style={{ tintColor: tintColor, width: 25, height: 25 }}
-                />
-              );
+            // case 'Reports':
+            //   return (
+            //     <Image
+            //       source={icons.reports}
+            //       resizeMode="contain"
+            //       style={{ tintColor: tintColor, width: 25, height: 25 }}
+            //     />
+            //   );
             case 'Profile':
               return (
-                <Image
-                  source={icons.user}
-                  resizeMode="contain"
-                  style={{ tintColor: tintColor, width: 25, height: 25 }}
-                />
+                // <Image
+                //   source={icons.user}
+                //   resizeMode="contain"
+                //   style={{ tintColor: tintColor, width: 25, height: 25 }}
+                // />
+                <FontAwesome5 name="user" size={25} color={tintColor} />
               );
           }
         },
       })}
     >
       <Tab.Screen name="Main" component={Main} />
-      <Tab.Screen name="Reports" component={Reports} />
-      <Tab.Screen name="Undefined" component={Undefined} />
+      {/* <Tab.Screen name="Reports" component={Reports} /> */}
+      {/* <Tab.Screen name="Undefined" component={Undefined} /> */}
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
