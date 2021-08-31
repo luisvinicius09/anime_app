@@ -16,7 +16,7 @@ const fetchFonts = () => {
 
 // Screens
 
-//Tabs
+// Tabs
 import Tabs from "./app/navigation/tabs";
 
 const Stack = createStackNavigator();
