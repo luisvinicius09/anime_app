@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import * as Font from "expo-font";
-// import AppLoading from 'expo-app-loading';
+import AppLoading from 'expo-app-loading';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -24,15 +24,15 @@ const Stack = createStackNavigator();
 const App = () => {
   const [loaded, setLoaded] = React.useState(false);
 
-  // if (!loaded) {
-  //   return (
-  //     <AppLoading
-  //       startAsync={fetchFonts}
-  //       onFinish={() => setLoaded(true)}
-  //       onError={console.warn}
-  //     />
-  //   )
-  // }
+  if (!loaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setLoaded(true)}
+        onError={console.warn}
+      />
+    )
+  }
 
   return (
     <NavigationContainer>
