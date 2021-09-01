@@ -9,11 +9,11 @@ const Main = (): JSX.Element => {
   const state = useSelector((state) => state);
 
   const increment = () => {
-    dispatch(usersActions.incrementValue);
+    dispatch(usersActions.incrementValue());
   }
 
   const decrement = () => {
-    dispatch(usersActions.decrementValue);
+    dispatch(usersActions.decrementValue());
   }
 
   return (
@@ -21,7 +21,7 @@ const Main = (): JSX.Element => {
       <View>
         <Text>Test Main Screen</Text>
         <Text>COUNT: {state.value}</Text>
-        <TouchableOpacity onPress={() => increment()  }>
+        <TouchableOpacity onPress={increment}>
           <Text>
             CLICK ME TO INCREMENT
           </Text>
