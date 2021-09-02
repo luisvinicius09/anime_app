@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  persistReducer,
+  persistCombineReducers,
   FLUSH,
   PAUSE,
   PERSIST,
@@ -10,7 +10,6 @@ import {
 } from "redux-persist";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import rootReducer from "./reducers";
-import counterReducer from "./reducers/usersReducer";
 
 const persistConfig = {
   key: "root",
@@ -18,7 +17,7 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, counterReducer);
+const persistedReducer = persistCombineReducers(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -29,5 +28,17 @@ const store = configureStore({
       },
     }),
 });
+
+const clearAll = async () => {
+  try {
+    await AsyncStorage.clear()
+  } catch(e) {
+    // clear error
+  }
+
+  console.log('Done.')
+};
+
+// clearAll();
 
 export default store;
