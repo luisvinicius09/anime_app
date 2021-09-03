@@ -1,8 +1,7 @@
-import usersReducer from "./usersReducer";
+import animesReducer from "./animesReducer";
 
 const rootReducer = {
-  counter: usersReducer,
+  animes: animesReducer,
 };
 
 export default rootReducer;
-
