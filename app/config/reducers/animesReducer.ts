@@ -5,7 +5,7 @@ const animesSlice = createSlice({
   name: "animes",
   initialState: {
     loading: "idle",
-    animes: [],
+    data: [],
     errors: undefined,
   },
   reducers: {
@@ -14,7 +14,7 @@ const animesSlice = createSlice({
     },
     getAnimesSuccess: (state, { payload }) => {
       state.loading = "idle";
-      state.animes = payload;
+      state.data = payload;
       state.errors = undefined;
     },
     getAnimesFailed: (state, { payload }) => {
@@ -33,8 +33,8 @@ const fetchAnimes = () => async (dispatch: any) => {
   dispatch(getAnimesStart());
 
   try {
-    const data = axios.get('https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=0');
-    dispatch(getAnimesSuccess(data));
+    const response = await axios.get('https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=0');
+    dispatch(getAnimesSuccess(response.data.data));
   } catch (error) {
     dispatch(getAnimesFailed(error));
   }
