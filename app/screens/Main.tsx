@@ -40,7 +40,9 @@ const Main = (): JSX.Element => {
               />
             );
           }}
-          onEndReached={() => console.log("this is the end")}
+          onEndReached={() => {
+            dispatch(fetchAnimes(state.animes.next));
+          }}
           onEndReachedThreshold={0.01}
         />
       </View>
