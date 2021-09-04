@@ -15,6 +15,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage: AsyncStorage,
+  blacklist: ["animes"],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, rootReducer);
