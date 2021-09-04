@@ -8,7 +8,7 @@ const animesSlice = createSlice({
   name: "animes",
   initialState: {
     loading: "idle",
-    data: [],
+    data: new Array,
     errors: undefined,
     next: "",
   },
@@ -18,7 +18,7 @@ const animesSlice = createSlice({
     },
     getAnimesSuccess: (state, { payload }) => {
       state.loading = "idle";
-      state.data = payload;
+      state.data = [...state.data, ...payload];
       state.errors = undefined;
     },
     getAnimesFailed: (state, { payload }) => {
