@@ -13,9 +13,14 @@ const Main = (): JSX.Element => {
     dispatch(fetchAnimes());
   }, [dispatch]);
 
-  const Item = ({ name }: any) => (
+  const Item = ({ name, image }: any) => (
     <View style={styles.item}>
-      <Text>{name}</Text>
+      <View>
+        <Image source={{ uri: image }} style={styles.itemImage} />
+      </View>
+      <View>
+        <Text>{name}</Text>
+      </View>
     </View>
   );
 
@@ -27,10 +32,15 @@ const Main = (): JSX.Element => {
           showsVerticalScrollIndicator={false}
           data={state.animes.data}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <Item name={item.attributes.canonicalTitle} />
-          )}
-          onEndReached={() => console.log('this is the end')}
+          renderItem={({ item }) => {
+            return (
+              <Item
+                name={item.attributes.canonicalTitle}
+                image={item.attributes.posterImage.small}
+              />
+            );
+          }}
+          onEndReached={() => console.log("this is the end")}
           onEndReachedThreshold={0.01}
         />
       </View>
@@ -46,14 +56,23 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: SIZES.padding,
+    paddingTop: "10%",
   },
   item: {
     borderColor: "#000",
     borderWidth: 1,
-    height: 180,
-  }
+    height: 150,
+    borderRadius: SIZES.radius,
+    marginTop: SIZES.padding,
+    flex: 1,
+    flexDirection: "row",
+  },
+  itemImage: {
+    width: 90,
+    height: 150,
+    borderRadius: 6
+  },
 });
 
 export default Main;
