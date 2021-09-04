@@ -69,9 +69,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   itemImage: {
-    width: 90,
-    height: 150,
-    borderRadius: 6
+    width: 60,
+    height: 110,
   },
 });
 
