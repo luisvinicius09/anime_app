@@ -79,4 +79,13 @@ export type InitialStateAnimes = {
   loading: string;
   data: Array<AnimeData>; // TODO: Type checking
   errors: undefined | string; // TODO: Type checking
+  next: string;
+}
+
+export interface RootState {
+  _persist: {
+    rehydrated: boolean,
+    version: number,
+  },
+  animes: InitialStateAnimes,
 }
