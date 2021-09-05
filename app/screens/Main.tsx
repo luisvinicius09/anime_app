@@ -4,10 +4,11 @@ import { COLORS, FONTS, SIZES } from "../constants";
 import { fetchAnimes } from "../config/reducers/animesReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { FlatList } from "react-native-gesture-handler";
+import { RootState } from "../types";
 
 const Main = (): JSX.Element => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector((state: RootState) => state);
 
   React.useEffect(() => {
     dispatch(fetchAnimes());
@@ -29,12 +30,13 @@ const Main = (): JSX.Element => {
       <View>
         <Text>Test Main Screen</Text>
         <FlatList
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator
           data={state.animes.data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
               <Item
+                key={item.id}
                 name={item.attributes.canonicalTitle}
                 image={item.attributes.posterImage.small}
               />
@@ -58,7 +60,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: SIZES.padding,
     paddingTop: "10%",
   },
   item: {
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: SIZES.radius,
     marginTop: SIZES.padding,
+    marginHorizontal: SIZES.padding,
     flex: 1,
     flexDirection: "row",
   },
