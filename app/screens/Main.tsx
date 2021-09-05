@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 import { COLORS, FONTS, SIZES } from "../constants";
 import { fetchAnimes } from "../config/reducers/animesReducer";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,14 +15,23 @@ const Main = (): JSX.Element => {
   }, [dispatch]);
 
   const Item = ({ name, image }: any) => (
-    <View style={styles.item}>
-      <View>
-        <Image source={{ uri: image }} style={styles.itemImage} />
+    <TouchableOpacity>
+      <View style={styles.item}>
+        <View style={{ flex: 0 }}>
+          <Image source={{ uri: image }} style={styles.itemImage} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text>{name}</Text>
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => console.log('I liked this one!')}>
+            <Text>
+              Heart
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View>
-        <Text>{name}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -36,7 +45,6 @@ const Main = (): JSX.Element => {
           renderItem={({ item }) => {
             return (
               <Item
-                key={item.id}
                 name={item.attributes.canonicalTitle}
                 image={item.attributes.posterImage.small}
               />
@@ -59,22 +67,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
+    backgroundColor: COLORS.lightGray,
     flex: 1,
     paddingTop: "10%",
   },
   item: {
-    borderColor: "#000",
+    borderColor: COLORS.gray,
     borderWidth: 1,
-    height: 150,
+    height: "16%",
     borderRadius: SIZES.radius,
     marginTop: SIZES.padding,
     marginHorizontal: SIZES.padding,
     flex: 1,
     flexDirection: "row",
+    backgroundColor: COLORS.white,
+    paddingHorizontal: SIZES.padding - 4,
+    paddingVertical: SIZES.padding - 8,
   },
   itemImage: {
-    width: 60,
-    height: 110,
+    width: 70,
+    height: 116,
+    borderRadius: SIZES.radius,
+    resizeMode: 'cover',
   },
 });
 
